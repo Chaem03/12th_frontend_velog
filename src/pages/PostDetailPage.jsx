@@ -1,6 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { dummy_data } from "../data/dummy_data";
+
 import SvgIcon from "../components/SvgIcon";
 
 const DetailHeader = () => {
@@ -299,18 +298,12 @@ const DetailContent = ({ post }) => {
   );
 };
 
-function PostDetailPage() {
-  const { postId } = useParams();
-  console.log(postId);
-
-  const post = dummy_data.find((item) => item.postID === Number(postId));
-
-  //postId랑 postID router보고 잘 구분 필요!
-
+function PostDetailPage({ selectedPost }) {
+  console.log(selectedPost);
   return (
     <>
       <DetailHeader />
-      <DetailContent post={post} />
+      <DetailContent post={selectedPost} />
     </>
   );
 }

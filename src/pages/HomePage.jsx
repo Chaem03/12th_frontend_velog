@@ -1,10 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import Header from "../components/header";
-import { dummy_data } from "../data/dummy_data";
+
 import NavItem from "../components/NavItem";
-import Card from "../components/Card";
+import CardView from "../components/CardView";
 import SvgIcon from "../components/SvgIcon";
+import React, { useState } from "react";
 
 function Option() {
   return (
@@ -107,24 +106,6 @@ function NavBar() {
         />
       </nav>
       <Option />
-    </div>
-  );
-}
-
-function CardView() {
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-        gap: "6rem",
-        flexWrap: "wrap",
-      }}
-    >
-      {dummy_data.map((item) => (
-        <Card key={item.postID} item={item} />
-      ))}
     </div>
   );
 }
