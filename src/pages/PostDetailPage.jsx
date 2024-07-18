@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import SvgIcon from "../components/SvgIcon";
+import CardView from "../components/CardView";
 
 const DetailHeader = () => {
   return (
@@ -300,6 +301,9 @@ const DetailContent = ({ post }) => {
 
 function PostDetailPage({ selectedPost }) {
   console.log(selectedPost);
+  useEffect(() => {
+    console.log("Selected Post (PostDetail):", selectedPost);
+  }, [selectedPost]);
   return (
     <>
       <DetailHeader />

@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { dummy_data } from "../data/dummy_data";
 import Card from "../components/Card";
 import PostDetailPage from "../pages/PostDetailPage";
 
 function CardView() {
-  const [selectedPost, setSelectedPost] = useState(null);
+  const [selectedPost, setselectedPost] = useState(null);
 
   const handleCardClick = (item) => {
-    setSelectedPost(item);
+    setselectedPost(item);
+    console.log("Selected Post:", item);
   };
+
+  useEffect(() => {
+    console.log("Selected Post (after setState):", selectedPost);
+  }, [selectedPost]);
   return (
     <div>
       <div

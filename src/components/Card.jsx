@@ -2,9 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Card({ item, onSelectPost }) {
-  const handleClick = () => {
-    onSelectPost(item);
-  };
   return (
     <Link
       to={`/detail/${item.postID}`}
@@ -14,7 +11,7 @@ function Card({ item, onSelectPost }) {
         flex: "1 1 290px",
         maxWidth: "290px",
       }}
-      onClick={handleClick}
+      onClick={() => onSelectPost(item)}
     >
       <div
         className="card"
