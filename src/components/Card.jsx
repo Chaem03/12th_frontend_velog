@@ -1,17 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Card({ item, onSelectPost }) {
+function Card({ item }) {
   return (
     <Link
       to={`/detail/${item.postID}`}
+      state={{ item }}
       style={{
         textDecoration: "none",
         color: "inherit",
         flex: "1 1 290px",
         maxWidth: "290px",
       }}
-      onClick={() => onSelectPost(item)}
     >
       <div
         className="card"

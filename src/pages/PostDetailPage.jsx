@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-
+import { useLocation, useNavigate } from "react-router-dom";
 import SvgIcon from "../components/SvgIcon";
-import CardView from "../components/CardView";
 
 const DetailHeader = () => {
   return (
@@ -17,7 +16,7 @@ const DetailHeader = () => {
       }}
     >
       <svg
-        style={{ width: "30", height: "30" }}
+        style={{ width: "30px", height: "30px" }}
         viewBox="0 0 192 192"
         fill="currentColor"
       >
@@ -85,7 +84,15 @@ const DetailHeader = () => {
     </div>
   );
 };
-
+const tagData = [
+  "채민이",
+  "고생했엉",
+  "하채민",
+  "바보",
+  "과제",
+  "화이팅",
+  "중앙톤도",
+];
 const TagList = ({ tag }) => {
   return (
     <span
@@ -107,6 +114,7 @@ const TagList = ({ tag }) => {
 };
 
 const DetailContent = ({ post }) => {
+  console.log("DetailContent post:", post);
   return (
     <div
       style={{
@@ -117,7 +125,7 @@ const DetailContent = ({ post }) => {
       }}
     >
       <div
-        key={post.postID}
+        key={post.item.postID}
         style={{
           height: "100%",
           display: "flex",
@@ -129,7 +137,7 @@ const DetailContent = ({ post }) => {
         }}
       >
         <h1 style={{ margin: "0.5rem", fontSize: "3rem", padding: "1rem" }}>
-          {post.title}
+          {post.item.title}
         </h1>
         <div
           style={{
@@ -140,7 +148,7 @@ const DetailContent = ({ post }) => {
             width: "90%",
           }}
         >
-          하채민 · {post.createdAt}
+          하채민 · {post.item.createdAt}
           <span
             style={{
               marginLeft: "auto",
@@ -156,13 +164,9 @@ const DetailContent = ({ post }) => {
         </div>
 
         <div style={{ marginTop: "1rem", margin: "0.5rem", padding: "1rem" }}>
-          <TagList tag="멋쟁이사자처럼" />
-          <TagList tag="하채민" />
-          <TagList tag="12기" />
-          <TagList tag="리액트" />
-          <TagList tag="프론트엔드" />
-          <TagList tag="멋사짱" />
-          <TagList tag="어렵돠.." />
+          {tagData.map((tag, index) => (
+            <TagList key={index} tag={tag} />
+          ))}
         </div>
         <div
           style={{
@@ -234,7 +238,7 @@ const DetailContent = ({ post }) => {
                 color: "darkgray",
               }}
             >
-              {post.postID}/3
+              {post.item.postID}/3
             </span>
 
             <SvgIcon
@@ -272,8 +276,8 @@ const DetailContent = ({ post }) => {
           }}
         >
           <img
-            src={post.thumbnail}
-            alt={post.title}
+            src={post.item.thumbnail}
+            alt={post.item.title}
             style={{
               display: "flex",
               height: "30%",
@@ -283,7 +287,7 @@ const DetailContent = ({ post }) => {
               marginBottom: "0.5rem",
             }}
           />
-          {post.content}
+          {post.item.content}
         </div>
         <div
           style={{
@@ -299,15 +303,14 @@ const DetailContent = ({ post }) => {
   );
 };
 
-function PostDetailPage({ selectedPost }) {
-  console.log(selectedPost);
-  useEffect(() => {
-    console.log("Selected Post (PostDetail):", selectedPost);
-  }, [selectedPost]);
+function PostDetailPage() {
+  const item = useLocation().state;
+  console.log(item);
+
   return (
     <>
       <DetailHeader />
-      <DetailContent post={selectedPost} />
+      <DetailContent post={item} />
     </>
   );
 }

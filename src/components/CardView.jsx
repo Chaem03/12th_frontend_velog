@@ -1,19 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { dummy_data } from "../data/dummy_data";
 import Card from "../components/Card";
-import PostDetailPage from "../pages/PostDetailPage";
 
 function CardView() {
-  const [selectedPost, setselectedPost] = useState(null);
-
-  const handleCardClick = (item) => {
-    setselectedPost(item);
-    console.log("Selected Post:", item);
-  };
-
-  useEffect(() => {
-    console.log("Selected Post (after setState):", selectedPost);
-  }, [selectedPost]);
   return (
     <div>
       <div
@@ -26,10 +15,9 @@ function CardView() {
         }}
       >
         {dummy_data.map((item) => (
-          <Card key={item.postID} item={item} onSelectPost={handleCardClick} />
+          <Card key={item.postID} item={item} />
         ))}
       </div>
-      {selectedPost && <PostDetailPage selectedPost={selectedPost} />}
     </div>
   );
 }
